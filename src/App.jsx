@@ -5,7 +5,10 @@ function App() {
   return (
       <div className="App">
         <h1>Welcome to React with Almdrasa!</h1>
-        <CalorieRecord></CalorieRecord>
+        <CalorieRecord date={new Date(2023, 2, 1)} meal="Breakfast" content="Eggs" calories="340"></CalorieRecord>
+        <CalorieRecord date={new Date(2023, 2, 2)} meal="Lunch" content="Chicken" calories="600"></CalorieRecord>
+        <CalorieRecord date={new Date(2023, 2, 3)} meal="Dinner" content="Cheese" calories="200"></CalorieRecord>
+        <CalorieRecord date={new Date(2023, 2, 4)} meal="Snacks" content="Chocolate" calories="500"></CalorieRecord>
       </div>
   );
   // const [count, setCount] = useState(0)

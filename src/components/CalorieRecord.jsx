@@ -1,12 +1,12 @@
 import "./CalorieRecord.css";
 
-function CalorieRecord() {
+function CalorieRecord(props) {
   return (
     <ul className="record">
-      <li className="record-date">March 6, 2023</li>
-      <li>Breakfast</li>
-      <li>Eggs + Beans</li>
-      <li className="record-calories">340</li>
+      <li className="record-date">{props.date.toISOString()}</li>
+      <li>{props.meal}</li>
+      <li>{props.content}</li>
+      <li className="record-calories">{props.calories}</li>
     </ul>
   );
 }
