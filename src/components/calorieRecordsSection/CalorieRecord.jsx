@@ -1,7 +1,7 @@
 import React from "react";
 import "./CalorieRecord.css";
 import CalorieRecordDate from "./CalorieRecordDate";
-import StyledRecordCell from "./StyledRecordCell";
+import StyledRecordCell from "../common/StyledRecordCell";
 
 function CalorieRecord(props) {
   return (
