@@ -1,14 +1,37 @@
 // import './App.css'
-import CalorieRecord from './components/CalorieRecord'
+import RecordList from './components/RecordList';
 
 function App() {
+  const records = [
+    {
+      date: new Date(2023, 2, 1),
+      meal: "Breakfast",
+      content: "Eggs",
+      calories: 340,
+    },
+    {
+      date: new Date(2023, 2, 2),
+      meal: "Lunch",
+      content: "Chicken",
+      calories: 600,
+    },
+    {
+      date: new Date(2023, 2, 3),
+      meal: "Dinner",
+      content: "Cheese",
+      calories: 200,
+    },
+    {
+      date: new Date(2023, 2, 4),
+      meal: "Snacks",
+      content: "Chocolate",
+      calories: 500,
+    },
+  ]
   return (
       <div className="App">
         <h1>Welcome to React with Almdrasa!</h1>
-        <CalorieRecord date={new Date(2023, 2, 1)} meal="Breakfast" content="Eggs" calories="340"/>
-        <CalorieRecord date={new Date(2023, 2, 2)} meal="Lunch" content="Chicken" calories="600"/>
-        <CalorieRecord date={new Date(2023, 2, 3)} meal="Dinner" content="Cheese" calories="200"/>
-        <CalorieRecord date={new Date(2023, 2, 4)} meal="Snacks" content="Chocolate" calories="500"/>
+        <RecordList records={records}/>
       </div>
   );
   // const [count, setCount] = useState(0)
