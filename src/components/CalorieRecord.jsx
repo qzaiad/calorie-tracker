@@ -2,11 +2,11 @@ import "./CalorieRecord.css";
 
 function CalorieRecord() {
   return (
-    <ul>
-      <li>Q0</li>
-      <li>Q1</li>
-      <li>Q2</li>
-      <li>Q3</li>
+    <ul className="record">
+      <li className="record-date">March 6, 2023</li>
+      <li>Breakfast</li>
+      <li>Eggs + Beans</li>
+      <li className="record-calories">340</li>
     </ul>
   );
 }
