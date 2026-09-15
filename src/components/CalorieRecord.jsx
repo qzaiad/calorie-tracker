@@ -1,3 +1,4 @@
+import React from "react";
 import "./CalorieRecord.css";
 import CalorieRecordDate from "./CalorieRecordDate";
 import StyledRecordCell from "./StyledRecordCell";
@@ -15,24 +16,26 @@ function CalorieRecord(props) {
       </li>
     </ul>
   );
-}
-// function CalorieRecord(props) {
-  // const month = props.date.toLocaleString("default", { month: "long" });
-  // const day = props.date.getDate();
-  // const year = props.date.getFullYear();
 
-//   return (
-//     <ul className="record">
-//       <li className="record-date">
-//         <div>{month}</div>
-//         <div>{day}</div>
-//         <div>{year}</div>
-//       </li>
-//       <li>{props.meal}</li>
-//       <li>{props.content}</li>
-//       <li className="record-calories">{props.calories}</li>
-//     </ul>
-//   );
-// }
+  // return (
+  //   React.createElement(
+  //     'ul',
+  //     {className: "record"},
+  //     React.createElement(
+  //       'li',
+  //       {},
+  //       React.createElement(CalorieRecordDate, {date: props.date},)
+  //     ),
+  //     React.createElement('li', {}, props.meal,),
+  //     React.createElement('li', {}, props.content,),
+  //     React.createElement(
+  //       'li',
+  //       {className: "record-calories"},
+  //       React.createElement(StyledRecordCell, {}, props.calories)
+  //     ),
+  //   )
+  // );
+  
+}
 
 export default CalorieRecord;
