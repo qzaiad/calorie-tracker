@@ -3,7 +3,6 @@ import "./CaloriesRecordEdit.css";
 
 function CaloriesRecordEdit() {
   console.log("Rendering CaloriesRecordEdit");
-  const [maxCaloriesValue, setMaxCaloriesValue] = useState(0);
   /**
    * useState() -> initial value of malRecord is undefined
    *            -> better: initialize it with empty object{}
@@ -15,7 +14,7 @@ function CaloriesRecordEdit() {
     // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,  // spread operator
+      ...mealRecord,  // spread operator
       date: event.target.value
     });
   };
@@ -30,7 +29,7 @@ function CaloriesRecordEdit() {
     // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,  // spread operator
+      ...mealRecord,  // spread operator
       meal: event.target.value
     });
   };
@@ -40,7 +39,7 @@ function CaloriesRecordEdit() {
     // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored, // spread operator
+      ...mealRecord, // spread operator
       content: event.target.value
     });
   };
@@ -56,7 +55,7 @@ function CaloriesRecordEdit() {
     // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,  // spread operator
+      ...mealRecord,  // spread operator
       calories: new_calories,
       max_calories: max_calories
     });
@@ -75,7 +74,7 @@ function CaloriesRecordEdit() {
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <label htmlFor="">Max. Calories {maxCaloriesValue}</label>
+      <label htmlFor="">Max. Calories {mealRecord.calories ? mealRecord.calories : 0}</label>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" onChange={onDateChangeHandler} />
       <label htmlFor="meal">Meal:</label>
