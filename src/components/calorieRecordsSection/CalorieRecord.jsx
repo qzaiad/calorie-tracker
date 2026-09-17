@@ -7,9 +7,9 @@ function CalorieRecord(props) {
   const [currentCalories, setCurrentCalories] = useState(props.calories);
   const calorieClickHandler = () => {
     setCurrentCalories(currentCalories + 10);
-    console.log("calorieClickHandler:currentCalories", currentCalories)
+    // console.log("calorieClickHandler:currentCalories", currentCalories)
   }
-  console.log("On Rendering: currentCalories", currentCalories)
+  // console.log("On Rendering: currentCalories", currentCalories)
   return (
     <ul className="record">
       <li>
