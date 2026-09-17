@@ -2,11 +2,7 @@ import { useState } from "react";
 import "./CaloriesRecordEdit.css";
 
 function CaloriesRecordEdit() {
-
-  const [dateValue, setDateValue] = useState(0);
-  const [mealValue, setMealValue] = useState(0);
-  const [contentValue, setContentValue] = useState(0);
-  const [caloriesValue, setCaloriesValue] = useState(0);
+  console.log("Rendering CaloriesRecordEdit");
   const [maxCaloriesValue, setMaxCaloriesValue] = useState(0);
   /**
    * useState() -> initial value of malRecord is undefined
@@ -15,25 +11,36 @@ function CaloriesRecordEdit() {
   const [mealRecord, setMealRecored] = useState({});
 
   const onDateChangeHandler = (event) => {
+    // mealRecord.date = event.target.value;
+    // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,
+      ...setMealRecored,  // spread operator
       date: event.target.value
     });
   };
 
+  /**
+   * In order to re-render we have to call setMealRecord with a new object,
+   * i.e. with an object that has a new memory address, otherwise the state
+   * is updated but the component is not re-rendered
+   */
   const onMealChangeHandler = (event) => {
+    // mealRecord.meal = event.target.value;
+    // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,
+      ...setMealRecored,  // spread operator
       meal: event.target.value
     });
   };
 
   const onContentChangeHandler = (event) => {
+    // mealRecord.content = event.target.value;
+    // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,
+      ...setMealRecored, // spread operator
       content: event.target.value
     });
   };
@@ -44,9 +51,12 @@ function CaloriesRecordEdit() {
     if(max_calories < new_calories){
       max_calories = new_calories;
     }
+    // mealRecord.calories = new_calories;
+    // mealRecord.max_calories = max_calories;
+    // setMealRecored(mealRecord); // will not re-render
     console.log('mealRecord: ', mealRecord);
     setMealRecored({
-      ...setMealRecored,
+      ...setMealRecored,  // spread operator
       calories: new_calories,
       max_calories: max_calories
     });
