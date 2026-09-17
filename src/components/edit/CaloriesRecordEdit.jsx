@@ -8,29 +8,48 @@ function CaloriesRecordEdit() {
   const [contentValue, setContentValue] = useState(0);
   const [caloriesValue, setCaloriesValue] = useState(0);
   const [maxCaloriesValue, setMaxCaloriesValue] = useState(0);
+  /**
+   * useState() -> initial value of malRecord is undefined
+   *            -> better: initialize it with empty object{}
+   */
+  const [mealRecord, setMealRecored] = useState({});
 
   const onDateChangeHandler = (event) => {
-    console.log('Date: ', dateValue, " -> ", event.target.value);
-    setDateValue(event.target.value);
+    console.log('mealRecord: ', mealRecord);
+    setMealRecored({
+      ...setMealRecored,
+      date: event.target.value
+    });
   };
 
   const onMealChangeHandler = (event) => {
-    console.log('Date: ', mealValue, " -> ", event.target.value);
-    setMealValue(event.target.value);
+    console.log('mealRecord: ', mealRecord);
+    setMealRecored({
+      ...setMealRecored,
+      meal: event.target.value
+    });
   };
 
   const onContentChangeHandler = (event) => {
-    console.log('Date: ', contentValue, " -> ", event.target.value);
-    setContentValue(event.target.value);
+    console.log('mealRecord: ', mealRecord);
+    setMealRecored({
+      ...setMealRecored,
+      content: event.target.value
+    });
   };
 
   const onCaloriesChangeHandler = (event) => {
+    let max_calories = mealRecord.calories ? mealRecord.calories : 0;
     let new_calories = Number(event.target.value);
-    if(maxCaloriesValue < new_calories){
-      setMaxCaloriesValue(event.target.value);
+    if(max_calories < new_calories){
+      max_calories = new_calories;
     }
-    console.log('Date: ', caloriesValue, " -> ", event.target.value);
-    setCaloriesValue(event.target.value);
+    console.log('mealRecord: ', mealRecord);
+    setMealRecored({
+      ...setMealRecored,
+      calories: new_calories,
+      max_calories: max_calories
+    });
   };
 
   const onSubmitHandler = (event) => {
