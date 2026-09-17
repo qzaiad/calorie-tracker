@@ -28,10 +28,15 @@ function App() {
       calories: 500,
     },
   ]
+
+  const onFormSubmitHandler = (record) => {
+    console.log(record);
+  };
+
   return (
       <div className="App">
         <h1>Welcome to React with Almdrasa!</h1>
-        <CaloriesRecordEdit/>
+        <CaloriesRecordEdit onFormSubmit={onFormSubmitHandler} />
         <RecordList records={records}/>
       </div>
   );
