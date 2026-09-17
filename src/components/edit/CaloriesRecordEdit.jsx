@@ -4,11 +4,18 @@ import ClickCounter from "./ClickCounter";
 
 function CaloriesRecordEdit() {
   // console.log("Rendering CaloriesRecordEdit");
+  const DEFAULT_MEAL = {
+    date: "",
+    meal: "",
+    content: "",
+    calories: "",
+    max_calories: 0,
+  }
   /**
    * useState() -> initial value of malRecord is undefined
    *            -> better: initialize it with empty object{}
    */
-  const [mealRecord, setMealRecored] = useState({});
+  const [mealRecord, setMealRecored] = useState(DEFAULT_MEAL);
   const [clickCounter, setClickCounter] = useState(0);
 
   const onDateChangeHandler = (event) => {
@@ -73,7 +80,7 @@ function CaloriesRecordEdit() {
   };
 
   const onCaloriesChangeHandler = (event) => {
-    let max_calories = mealRecord.calories ? mealRecord.calories : 0;
+    let max_calories = mealRecord.max_calories ? mealRecord.max_calories : 0;
     let new_calories = Number(event.target.value);
     if(max_calories < new_calories){
       max_calories = new_calories;
@@ -98,25 +105,29 @@ function CaloriesRecordEdit() {
     //   content: event.target[2].value,
     //   calories: event.target[3].value,
     // })
+    setMealRecored({
+      ...DEFAULT_MEAL,
+      max_calories: mealRecord.max_calories,
+    }); // => re-render
   }
 
   return (
     <form onSubmit={onSubmitHandler}>
       <label htmlFor="">I got clicked {clickCounter} times</label>
-      <label htmlFor="">Max. Calories {mealRecord.calories ? mealRecord.calories : 0}</label>
+      <label htmlFor="">Max. Calories {mealRecord.max_calories ? mealRecord.max_calories : 0}</label>
       <label htmlFor="date">Date:</label>
-      <input type="date" id="date" onChange={onDateChangeHandler} />
+      <input type="date" id="date" value={mealRecord.date} onChange={onDateChangeHandler} />
       <label htmlFor="meal">Meal:</label>
-      <select id="meal"  onChange={onMealChangeHandler}>
+      <select id="meal" value={mealRecord.meal} onChange={onMealChangeHandler}>
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
         <option value="Dinner">Dinner</option>
         <option value="Snack">Snack</option>
       </select>
       <label htmlFor="content">Content:</label>
-      <input type="text" id="content" onChange={onContentChangeHandler} />
+      <input type="text" id="content" value={mealRecord.content} onChange={onContentChangeHandler} />
       <label htmlFor="calories">Calories:</label>
-      <input type="number" id="calories" onChange={onCaloriesChangeHandler} />
+      <input type="number" id="calories" value={mealRecord.calories} onChange={onCaloriesChangeHandler} />
       <div className="footer">
         <button>Add Record</button>
         <ClickCounter setClickCounter={setClickCounter} />
