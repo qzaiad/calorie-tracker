@@ -3,10 +3,6 @@ import CalorieRecordDate from "./CalorieRecordDate";
 import StyledRecordCell from "../common/StyledRecordCell";
 
 function CalorieRecord(props) {
-  if(props.calories < 0){
-    return null;  // nothing is rendered
-  }
-
   return (
     <ul className="record">
       <li>
