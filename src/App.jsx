@@ -4,24 +4,28 @@ import CaloriesRecordEdit from './components/edit/CaloriesRecordEdit';
 function App() {
   const records = [
     {
+      key: 1,
       date: new Date(2023, 2, 1),
       meal: "Breakfast",
       content: "Eggs",
       calories: 340,
     },
     {
+      key: 2,
       date: new Date(2023, 2, 2),
       meal: "Lunch",
       content: "Chicken",
       calories: 600,
     },
     {
+      key: 3,
       date: new Date(2023, 2, 3),
       meal: "Dinner",
       content: "Cheese",
       calories: 200,
     },
     {
+      key: 4,
       date: new Date(2023, 2, 4),
       meal: "Snacks",
       content: "Chocolate",
