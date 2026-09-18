@@ -9,7 +9,7 @@ function App() {
       date: new Date(2023, 2, 1),
       meal: "Breakfast",
       content: "Eggs",
-      calories: 340,
+      calories: -340,
     },
     {
       id: 2,
