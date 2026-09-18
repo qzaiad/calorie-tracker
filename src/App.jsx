@@ -35,16 +35,19 @@ function App() {
   ]
   
   const [records, setRecords] = useState(INITIAL_RECORDS);
+  const [nextId, setNextId] = useState(INITIAL_RECORDS.length + 1)
 
   const onFormSubmitHandler = (record) => {
     // console.log(record);
     const formattedRecord = {
       ...record,
       date: new Date(record.date),
-      id: records.length + 1,
+      // very bad idea, because an element might be deleted/added/reorded and uniqueness is not guaranteed
+      id: nextId,
     }
     // console.log(formattedRecord);
-    setRecords([...records, formattedRecord]);
+    setNextId(lastUsedId => lastUsedId + 1)
+    setRecords(prevRecords => [formattedRecord, ...prevRecords]);
   };
 
   return (
