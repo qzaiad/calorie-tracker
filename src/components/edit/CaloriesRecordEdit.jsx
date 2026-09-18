@@ -9,7 +9,6 @@ function CaloriesRecordEdit(props) {
     meal: "Breakfast",
     content: "",
     calories: "",
-    max_calories: 0,
   }
   /**
    * useState() -> initial value of malRecord is undefined
@@ -80,19 +79,13 @@ function CaloriesRecordEdit(props) {
   };
 
   const onCaloriesChangeHandler = (event) => {
-    let max_calories = mealRecord.max_calories ? mealRecord.max_calories : 0;
     let new_calories = Number(event.target.value);
-    if(max_calories < new_calories){
-      max_calories = new_calories;
-    }
     // mealRecord.calories = new_calories;
-    // mealRecord.max_calories = max_calories;
     // setMealRecored(mealRecord); // will not re-render
     // console.log('mealRecord: ', mealRecord);
     setMealRecored({
       ...mealRecord,  // spread operator
       calories: new_calories,
-      max_calories: max_calories
     });
   };
 
@@ -102,14 +95,11 @@ function CaloriesRecordEdit(props) {
     props.onFormSubmit(mealRecord);
     setMealRecored({
       ...DEFAULT_MEAL,
-      max_calories: mealRecord.max_calories,
     }); // => re-render
   }
 
   return (
     <form onSubmit={onSubmitHandler}>
-      <label htmlFor="">I got clicked {clickCounter} times</label>
-      <label htmlFor="">Max. Calories {mealRecord.max_calories ? mealRecord.max_calories : 0}</label>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" value={mealRecord.date} onChange={onDateChangeHandler} />
       <label htmlFor="meal">Meal:</label>
