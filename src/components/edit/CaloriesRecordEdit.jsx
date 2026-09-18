@@ -112,7 +112,21 @@ function CaloriesRecordEdit(props) {
       <label htmlFor="content">Content:</label>
       <input type="text" id="content" value={mealRecord.content} onChange={onContentChangeHandler} />
       <label htmlFor="calories">Calories:</label>
-      <input type="number" id="calories" value={mealRecord.calories} onChange={onCaloriesChangeHandler} />
+      <input
+        type="number"
+        id="calories"
+        value={mealRecord.calories}
+        onChange={onCaloriesChangeHandler}
+        style={
+          mealRecord.calories < 0
+            ? {
+                border: "1px solid red",
+                backgroundColor: "white",
+                color: "red",
+              }
+            : {}
+        }
+       />
       <div className="footer">
         <button>Add Record</button>
         <ClickCounter setClickCounter={setClickCounter} />
