@@ -6,7 +6,7 @@ function CaloriesRecordEdit(props) {
   // console.log("Rendering CaloriesRecordEdit");
   const DEFAULT_MEAL = {
     date: "",
-    meal: "",
+    meal: "Breakfast",
     content: "",
     calories: "",
     max_calories: 0,
@@ -98,7 +98,7 @@ function CaloriesRecordEdit(props) {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(mealRecord);
+    // console.log(mealRecord);
     props.onFormSubmit(mealRecord);
     setMealRecored({
       ...DEFAULT_MEAL,
