@@ -98,15 +98,6 @@ function CaloriesRecordEdit(props) {
     }); // => re-render
   }
 
-  let calorieInputStype = {};
-  if(mealRecord.calories < 0){
-    calorieInputStype = {
-      border: "1px solid red",
-      backgroundColor: "white",
-      color: "red",
-    };
-  }
-
   return (
     <form onSubmit={onSubmitHandler}>
       <label htmlFor="date">Date:</label>
@@ -126,7 +117,7 @@ function CaloriesRecordEdit(props) {
         id="calories"
         value={mealRecord.calories}
         onChange={onCaloriesChangeHandler}
-        style={calorieInputStype}
+        className={mealRecord.calories < 0 ? "error" : ""}
        />
       <div className="footer">
         <button>Add Record</button>

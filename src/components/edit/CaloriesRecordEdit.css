@@ -28,6 +28,13 @@ form input[type="date"] {
   box-sizing: border-box;
 }
 
+form input[type="number"].error{
+  border: 1px solid red;
+  background-color: white;
+  color: red;
+}
+
+
 form select {
   background-color: #333;
   color: #fff;
