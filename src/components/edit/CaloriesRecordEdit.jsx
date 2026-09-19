@@ -1,5 +1,74 @@
 import { useState } from "react";
-import "./CaloriesRecordEdit.css";
+import styled from "styled-components";
+
+const Form = styled.form`
+  background-color: #d4e0ff;
+  padding: 20px;
+  border-radius: 10px;
+
+  & label {
+    color: #333;
+    margin-right: 30px;
+    margin-bottom: 10px;
+  }
+
+  & input[type="text"],
+  & input[type="number"],
+  & input[type="date"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 255px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  & #calories {
+    border: ${props => props.calories < 0 && '1px solid red'};
+    background-color: ${props => props.calories < 0 && 'white'};
+    color: ${props => props.calories < 0 && 'red'};
+  }
+
+  & input[type="number"].error{
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+  }
+
+
+  & select {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 255px;
+    margin-bottom: 20px;
+    display: block;
+    box-sizing: border-box;
+  }
+
+  & .footer {
+    display: flex;
+  }
+
+  & .footer button {
+    background-color: white;
+    color: #012367;
+    display: block;
+    border: 3px solid #012367;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+`;
 
 function CaloriesRecordEdit(props) {
   // console.log("Rendering CaloriesRecordEdit");
@@ -97,7 +166,7 @@ function CaloriesRecordEdit(props) {
   }
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <Form onSubmit={onSubmitHandler}>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" value={mealRecord.date} onChange={onDateChangeHandler} />
       <label htmlFor="meal">Meal:</label>
@@ -120,7 +189,7 @@ function CaloriesRecordEdit(props) {
       <div className="footer">
         <button>Add Record</button>
       </div>
-    </form>
+    </Form>
   );
 }
 
