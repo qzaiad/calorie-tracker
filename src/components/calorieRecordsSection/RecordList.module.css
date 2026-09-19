@@ -1,9 +1,9 @@
-.record-list {
+.record_list {
   list-style: none;
   padding: 0;
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-.record-list > li {
+.record_item {
   margin: 10px;
 }
