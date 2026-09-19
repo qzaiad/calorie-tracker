@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./CaloriesRecordEdit.css";
-import ClickCounter from "./ClickCounter";
 
 function CaloriesRecordEdit(props) {
   // console.log("Rendering CaloriesRecordEdit");
@@ -15,7 +14,6 @@ function CaloriesRecordEdit(props) {
    *            -> better: initialize it with empty object{}
    */
   const [mealRecord, setMealRecored] = useState(DEFAULT_MEAL);
-  const [clickCounter, setClickCounter] = useState(0);
 
   const onDateChangeHandler = (event) => {
     // mealRecord.date = event.target.value;
@@ -121,7 +119,6 @@ function CaloriesRecordEdit(props) {
        />
       <div className="footer">
         <button>Add Record</button>
-        <ClickCounter setClickCounter={setClickCounter} />
       </div>
     </form>
   );
