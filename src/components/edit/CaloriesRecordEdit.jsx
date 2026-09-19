@@ -67,7 +67,24 @@ const Form = styled.form`
     padding: 10px;
     cursor: pointer;
     flex-grow: 1;
-}
+  }
+
+  @media (min-width: 768px){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    & input[type="text"],
+    & input[type="number"],
+    & input[type="date"],
+    & select {
+      background-color: blue;
+      width: 10%
+    }
+
+  }
 `;
 
 function CaloriesRecordEdit(props) {
