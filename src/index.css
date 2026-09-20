@@ -18,4 +18,5 @@ body {
    * - Flexbox ? margin: auto can center both
    */
   margin: auto;
+  padding: 0 10px;
 }
