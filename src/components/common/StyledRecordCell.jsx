@@ -1,8 +1,8 @@
-import "./StyledRecordCell.css";
+import styles from "./StyledRecordCell.module.css";
 
 function StyledRecordCell(props) {
   return (
-    <div className="styled-record-cell">{props.children}</div>
+    <div className={styles["styled-record-cell"]}>{props.children}</div>
   );
 }
 
