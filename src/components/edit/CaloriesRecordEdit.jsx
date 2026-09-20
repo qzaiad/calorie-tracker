@@ -14,7 +14,7 @@ function CaloriesRecordEdit(props) {
    * useState() -> initial value of malRecord is undefined
    *            -> better: initialize it with empty object{}
    */
-  const [mealRecord, setMealRecored] = useState(DEFAULT_MEAL);
+  const [mealRecord, setMealRecored] = useState({...DEFAULT_MEAL, date: new Date().toISOString().split("T")[0]});
 
   const onDateChangeHandler = (event) => {
     // mealRecord.date = event.target.value;
@@ -94,6 +94,7 @@ function CaloriesRecordEdit(props) {
     props.onFormSubmit(mealRecord);
     setMealRecored({
       ...DEFAULT_MEAL,
+      date: new Date().toISOString().split("T")[0]
     }); // => re-render
   }
 
