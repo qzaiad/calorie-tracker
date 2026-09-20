@@ -3,7 +3,7 @@
 .form {
   background-color: var(--theme-background-ultralight);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--them-border-radius-smooth);
   border: 1px solid var(--theme-background-normal);
 }
 
