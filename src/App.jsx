@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RecordList from './components/calorieRecordsSection/RecordList';
+import ListingSection from './components/calorieRecordsSection/ListingSection';
 import CaloriesRecordEdit from './components/edit/CaloriesRecordEdit';
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
       <div className="App">
         <h1>Welcome to React with Almdrasa!</h1>
         <CaloriesRecordEdit onFormSubmit={onFormSubmitHandler} />
-        <RecordList records={records}/>
+        <ListingSection allRecords={records}/>
       </div>
   );
 }
