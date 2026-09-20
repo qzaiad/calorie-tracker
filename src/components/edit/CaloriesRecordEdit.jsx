@@ -1,91 +1,6 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styles from "./CaloriesRecordEdit.module.css";
 
-const Form = styled.form`
-  background-color: #d4e0ff;
-  padding: 20px;
-  border-radius: 10px;
-
-  & label {
-    color: #333;
-    margin-right: 30px;
-    margin-bottom: 10px;
-  }
-
-  & input[type="text"],
-  & input[type="number"],
-  & input[type="date"] {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    min-width: 255px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    display: block;
-    box-sizing: border-box;
-  }
-
-  & #calories {
-    border: ${props => props.calories < 0 && '1px solid red'};
-    background-color: ${props => props.calories < 0 && 'white'};
-    color: ${props => props.calories < 0 && 'red'};
-  }
-
-  & input[type="number"].error{
-    border: 1px solid red;
-    background-color: white;
-    color: red;
-  }
-
-
-  & select {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    width: 100%;
-    min-width: 255px;
-    margin-bottom: 20px;
-    display: block;
-    box-sizing: border-box;
-  }
-
-  & .footer {
-    display: flex;
-  }
-
-  & .footer button {
-    background-color: white;
-    color: #012367;
-    display: block;
-    border: 3px solid #012367;
-    border-radius: 15px;
-    padding: 10px;
-    cursor: pointer;
-    flex-grow: 1;
-  }
-
-  @media (min-width: 768px){
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    & input[type="text"],
-    & input[type="number"],
-    & input[type="date"],
-    & select {
-      background-color: blue;
-      width: 10%
-    }
-
-  }
-`;
 
 function CaloriesRecordEdit(props) {
   // console.log("Rendering CaloriesRecordEdit");
@@ -183,7 +98,7 @@ function CaloriesRecordEdit(props) {
   }
 
   return (
-    <Form onSubmit={onSubmitHandler}>
+    <form className={styles.form} onSubmit={onSubmitHandler}>
       <label htmlFor="date">Date:</label>
       <input type="date" id="date" value={mealRecord.date} onChange={onDateChangeHandler} />
       <label htmlFor="meal">Meal:</label>
@@ -201,12 +116,17 @@ function CaloriesRecordEdit(props) {
         id="calories"
         value={mealRecord.calories}
         onChange={onCaloriesChangeHandler}
-        className={mealRecord.calories < 0 ? "error" : ""}
+        className={styles["calories-input"] + (mealRecord.calories < 0 ? ` ${styles.error}` : "")}
        />
-      <div className="footer">
+       {/*
+         * CSS class footer is not accessible by footer. The HTML element wull not use
+         * CSS class footer. A randomly generated class name should be used. It is
+         * accessed by styles.footer
+        */}
+      <div className={styles.footer}>
         <button>Add Record</button>
       </div>
-    </Form>
+    </form>
   );
 }
 
