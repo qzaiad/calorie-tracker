@@ -1,13 +1,19 @@
 import RecordList from "./RecordList";
 import styles from "./ListingSection.module.css";
 import { useState } from "react";
+import { getDatFromString } from "../../utils";
 
 function ListingSection(props){
   const { allRecords } = props;
   const [currentDate, setCurrentDate] = useState(new Date()); // UTC time
 
   const dateChangeHandler = (event) => {
-    setCurrentDate(new Date(event.target.value));
+    // console.log({
+    //   "event.target.value": event.target.value,
+    //   "Date(event.target.value)": new Date(event.target.value),
+    //   "getDatFromString(event.target.value)": getDatFromString(event.target.value)
+    // });
+    setCurrentDate(getDatFromString(event.target.value));
   }
 
   const dateFilter = (record) =>

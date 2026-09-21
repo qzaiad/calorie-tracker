@@ -78,13 +78,13 @@ function CaloriesRecordEdit(props) {
   };
 
   const onCaloriesChangeHandler = (event) => {
-    let new_calories = Number(event.target.value);
+    let new_calories = event.target.value;
     // mealRecord.calories = new_calories;
     // setMealRecored(mealRecord); // will not re-render
-    // console.log('mealRecord: ', mealRecord);
+    // console.log('mealRecord.calories: ', mealRecord.calories);
     setMealRecored({
       ...mealRecord,  // spread operator
-      calories: new_calories,
+      calories: new_calories && Number(new_calories),
     });
   };
 

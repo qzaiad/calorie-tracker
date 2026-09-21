@@ -3,6 +3,7 @@ import ListingSection from './components/calorieRecordsSection/ListingSection';
 import CaloriesRecordEdit from './components/edit/CaloriesRecordEdit';
 import Modal from "react-modal";
 import styles from "./App.module.css";
+import { getDatFromString } from './utils';
 
 const INITIAL_RECORDS = [
   {
@@ -69,8 +70,7 @@ function App() {
     // console.log(record);
     const formattedRecord = {
       ...record,
-      date: new Date(record.date),
-      // very bad idea, because an element might be deleted/added/reorded and uniqueness is not guaranteed
+      date: getDatFromString(record.date),
       id: nextId,
     }
     // console.log(formattedRecord);
