@@ -83,7 +83,7 @@ function App() {
       <div className="App">
         <h1 className={styles.title}>Calorie Tracker</h1>
         <Modal isOpen={isModalOpen} onRequestClose={handleCloseModal} contentLabel='Modal' style={modalStyles}>
-          <CaloriesRecordEdit onFormSubmit={onFormSubmitHandler} />
+          <CaloriesRecordEdit onFormSubmit={onFormSubmitHandler} onCancel={handleCloseModal} />
         </Modal>
         <ListingSection allRecords={records}/>
         <button onClick={handleOpenModal} className={styles["open-modal-btn"]}>Track food</button>

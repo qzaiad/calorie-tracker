@@ -98,6 +98,14 @@ function CaloriesRecordEdit(props) {
     }); // => re-render
   }
 
+  const onCancelHandler = () => {
+    setMealRecored({
+      ...DEFAULT_MEAL,
+      date: new Date().toISOString().split("T")[0]
+    }); // => re-render
+    props.onCancel(); // Modal state is maintained in App.jsx
+  }
+
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
       <label htmlFor="date">Date:</label>
@@ -126,6 +134,7 @@ function CaloriesRecordEdit(props) {
         */}
       <div className={styles.footer}>
         <button>Add Record</button>
+        <button type="button" className={styles["secondary"]} onClick={onCancelHandler}>Cancel</button>
       </div>
     </form>
   );
