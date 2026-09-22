@@ -1,9 +1,19 @@
+/**
+ * The "add a record" form, rendered inside the modal opened from App.jsx.
+ *
+ * Fully controlled form: every field reads from the `mealRecord` state and
+ * updates it through its own change handler. On submit the payload is passed
+ * up via `onFormSubmit`; on cancel the state is reset and `onCancel` is called
+ * (the modal's open/closed state itself lives in App.jsx).
+ */
 import { useState } from "react";
 import styles from "./CaloriesRecordEdit.module.css";
 
 
 function CaloriesRecordEdit(props) {
   // console.log("Rendering CaloriesRecordEdit");
+  // Reset values for every field; used to initialize and to clear the form
+  // after submit/cancel. `date` is filled in separately with today's date.
   const DEFAULT_MEAL = {
     date: "",
     meal: "Breakfast",
@@ -16,6 +26,8 @@ function CaloriesRecordEdit(props) {
    */
   const [mealRecord, setMealRecored] = useState({...DEFAULT_MEAL, date: new Date().toISOString().split("T")[0]});
 
+  // <input type="date"> gives a "YYYY-MM-DD" string; App converts it to a
+  // Date later via getDateFromString().
   const onDateChangeHandler = (event) => {
     // mealRecord.date = event.target.value;
     // setMealRecored(mealRecord); // will not re-render
@@ -57,6 +69,7 @@ function CaloriesRecordEdit(props) {
    *      ↓
    *  Only necessary DOM changes are committed
    */
+  // Meal type changed: replace only the `meal` field of the state object.
   const onMealChangeHandler = (event) => {
     // mealRecord.meal = event.target.value;
     // setMealRecored(mealRecord); // will not re-render
@@ -67,6 +80,7 @@ function CaloriesRecordEdit(props) {
     });
   };
 
+  // Food description changed (free text).
   const onContentChangeHandler = (event) => {
     // mealRecord.content = event.target.value;
     // setMealRecored(mealRecord); // will not re-render
@@ -77,6 +91,9 @@ function CaloriesRecordEdit(props) {
     });
   };
 
+  // Calories: keep it as a number so comparisons (e.g. `< 0` error styling)
+  // work. `new_calories && Number(new_calories)` also maps "" -> "" so the
+  // input isn't forced to 0 while the user is still typing.
   const onCaloriesChangeHandler = (event) => {
     let new_calories = event.target.value;
     // mealRecord.calories = new_calories;
@@ -88,6 +105,10 @@ function CaloriesRecordEdit(props) {
     });
   };
 
+  /**
+   * Valid form submission: prevent the browser's native submit/reload, hand
+   * the record to App, then reset the form so it's clean for next time.
+   */
   const onSubmitHandler = (event) => {
     event.preventDefault();
     // console.log(mealRecord);
@@ -98,6 +119,7 @@ function CaloriesRecordEdit(props) {
     }); // => re-render
   }
 
+  // Cancel: discard what was typed (reset to defaults) and close the modal.
   const onCancelHandler = () => {
     setMealRecored({
       ...DEFAULT_MEAL,
@@ -120,6 +142,8 @@ function CaloriesRecordEdit(props) {
       <label htmlFor="content">Content:</label>
       <input type="text" id="content" value={mealRecord.content} onChange={onContentChangeHandler} />
       <label htmlFor="calories">Calories:</label>
+      {/* Negative calories get the `error` class (red outline); note how two
+          CSS Module classes are concatenated with a space. */}
       <input
         type="number"
         id="calories"
@@ -132,6 +156,8 @@ function CaloriesRecordEdit(props) {
          * CSS class footer. A randomly generated class name should be used. It is
          * accessed by styles.footer
         */}
+      {/* Footer buttons: "Add Record" defaults to type="submit"; Cancel is
+          type="button" so it doesn't submit the form. */}
       <div className={styles.footer}>
         <button>Add Record</button>
         <button type="button" className={styles["secondary"]} onClick={onCancelHandler}>Cancel</button>
