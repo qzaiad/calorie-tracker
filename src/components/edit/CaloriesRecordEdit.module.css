@@ -3,20 +3,19 @@
 .form {
   background-color: var(--theme-background-ultralight);
   padding: 20px;
-  border-radius: var(--them-border-radius-smooth);
+  border-radius: var(--theme-border-radius-smooth);
   border: 1px solid var(--theme-background-normal);
+  display: grid;
+  gap: 10px;
 }
 
 .form label {
-  color: vor(--theme-color-dark);
+  color: var(--theme-color-dark);
   margin-right: 30px;
   margin-bottom: 10px;
 }
 
-.form input[type="text"],
-.calories-input,
-.form input[type="date"],
-.form select {
+.form-input {
   background-color: var(--theme-background-light);
   color: var(--theme-color-normal);
   border: 1px solid var(--theme-color-normal);
@@ -24,16 +23,24 @@
   border-radius: 5px;
   width: 100%;
   min-width: 255px;
-  margin-bottom: 20px;
   font-size: 16px;
   display: block;
   box-sizing: border-box;
 }
 
-.error{
-  border: 1px solid red;
-  background-color: white;
-  color: red;
+.error {
+  border: 1px solid maroon;
+  background-color: var(--theme-background-light);
+  color: maroon;
+}
+
+.warning {
+  background: #ffcc00;
+  border-radius: var(--theme-border-radius-smooth);
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  margin: 0;
 }
 
 .footer {
@@ -52,26 +59,30 @@
   width: 200px;
 }
 
-.footer button.secondary{
+.footer button.secondary {
   background-color: var(--theme-background-light);
   border: 1px solid var(--theme-background-normal);
   color: var(--theme-color-normal);
 }
 
-@media (min-width: 768px){
-  .form{
-    display: grid;
-    /*
-     * minmax(40px, auto) Make this row at least 40px tall, but allow its size to grow based on its content.
-     */
+.footer button:disabled {
+  background-color: lightgray;
+  border-width: 0;
+  color: gray;
+  pointer-events: none;
+}
+
+@media (min-width: 786px) {
+  .form {
     grid-template-rows: repeat(2, 1fr) minmax(40px, auto);
-    grid-template-columns: repeat(2, auto 1fr); /* means repeat the whole pattern auto 1fr twice. */
+    grid-template-columns: repeat(2, auto 1fr);
     column-gap: 1rem;
-    align-items: center;
+    row-gap: 1rem;
   }
 
-  .footer{
-    grid-column: 1/-1;
+  .footer,
+  .warning {
+    grid-column: 1 / -1;
     justify-self: center;
     width: 100%;
   }

@@ -56,9 +56,9 @@ function ListingSection(props){
     });
   }
 
-  useEffect(() => {
-    getUser();
-  }, [])
+  // useEffect(() => {
+  //   getUser();
+  // }, [])
 
   return (
     <>
@@ -67,11 +67,11 @@ function ListingSection(props){
           hence the toISOString().split("T")[0] conversion. */}
       <input type="date" name="" id="listingDate" className={styles["listing-picker-input"]} value={currentDate.toISOString().split("T")[0]} onChange={dateChangeHandler} />
       <RecordList records={allRecords.filter(dateFilter)} />
-      <div>
+      {/* <div>
         <p>id: {user.id}</p>
         <p>first name: {user.firstName}</p>
         <p>last name: {user.lastName}</p>
-      </div>
+      </div> */}
     </>
   );
 }

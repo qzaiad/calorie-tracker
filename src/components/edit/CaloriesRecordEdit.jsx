@@ -6,7 +6,7 @@
  * up via `onFormSubmit`; on cancel the state is reset and `onCancel` is called
  * (the modal's open/closed state itself lives in App.jsx).
  */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CaloriesRecordEdit.module.css";
 
 
@@ -24,7 +24,19 @@ function CaloriesRecordEdit(props) {
    * useState() -> initial value of malRecord is undefined
    *            -> better: initialize it with empty object{}
    */
-  const [mealRecord, setMealRecored] = useState({...DEFAULT_MEAL, date: new Date().toISOString().split("T")[0]});
+  const [mealRecord, setMealRecored] = useState({
+    ...DEFAULT_MEAL,
+    // date: new Date().toISOString().split("T")[0],
+  });
+
+  const [isFormValid, setIsFromValid] = useState(false);
+
+  useEffect(() => {
+    // console.log("Executing useEffect");
+
+    // mealRecord contains the new values which are set after re-render
+    setIsFromValid(mealRecord.date && mealRecord.content);
+  }, [mealRecord.date, mealRecord.content]);
 
   // <input type="date"> gives a "YYYY-MM-DD" string; App converts it to a
   // Date later via getDateFromString().
@@ -36,6 +48,12 @@ function CaloriesRecordEdit(props) {
       ...mealRecord,  // spread operator
       date: event.target.value
     });
+    
+    // This is a wrong logicbecause mealRecord contains the old date value before re-render
+    // setIsFromValid(mealRecord.date && mealRecord.content);
+
+    // This is a bad logic -> it should depend on a state. On refactoring it requires changing two places
+    // setIsFromValid(event.target.value && mealRecord.content);
   };
 
   /**
@@ -115,7 +133,7 @@ function CaloriesRecordEdit(props) {
     props.onFormSubmit(mealRecord);
     setMealRecored({
       ...DEFAULT_MEAL,
-      date: new Date().toISOString().split("T")[0]
+      date: new Date().toISOString().split("T")[0],
     }); // => re-render
   }
 
@@ -123,7 +141,7 @@ function CaloriesRecordEdit(props) {
   const onCancelHandler = () => {
     setMealRecored({
       ...DEFAULT_MEAL,
-      date: new Date().toISOString().split("T")[0]
+      date: new Date().toISOString().split("T")[0],
     }); // => re-render
     props.onCancel(); // Modal state is maintained in App.jsx
   }
@@ -150,6 +168,7 @@ function CaloriesRecordEdit(props) {
         value={mealRecord.calories}
         onChange={onCaloriesChangeHandler}
         className={styles["calories-input"] + (mealRecord.calories < 0 ? ` ${styles.error}` : "")}
+        min={0}
        />
        {/*
          * CSS class footer is not accessible by footer. The HTML element wull not use
@@ -159,7 +178,7 @@ function CaloriesRecordEdit(props) {
       {/* Footer buttons: "Add Record" defaults to type="submit"; Cancel is
           type="button" so it doesn't submit the form. */}
       <div className={styles.footer}>
-        <button>Add Record</button>
+        <button disabled={!isFormValid}>Add Record</button>
         <button type="button" className={styles["secondary"]} onClick={onCancelHandler}>Cancel</button>
       </div>
     </form>
