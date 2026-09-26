@@ -7,7 +7,7 @@
  */
 import RecordList from "./RecordList";
 import styles from "./ListingSection.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDateFromString } from "../../utils";
 
 function ListingSection(props){
@@ -44,14 +44,21 @@ function ListingSection(props){
     const response = await fetch("https://randomuser.me/api/");
 
     const data = await response.json();
+    // console.log(data["results"]);
+    // console.log(data["results"][0].id.value);
+    // console.log(data["results"][0].name);
+    // console.log(data["results"][0].name.first);
+    // console.log(data["results"][0].name.last);
     setUser({
-      id: data.id,
-      firstName: data["first_name"],
-      lastName: data["last_name"],
+      id: data["results"][0].id.value,
+      firstName: data["results"][0].name.first,
+      lastName: data["results"][0].name.last,
     });
   }
 
-  // getUser(); // this will cause an endless loop of sending HTTP-REQs and re-render. Website might block us
+  useEffect(() => {
+    getUser();
+  }, [])
 
   return (
     <>
@@ -61,9 +68,9 @@ function ListingSection(props){
       <input type="date" name="" id="listingDate" className={styles["listing-picker-input"]} value={currentDate.toISOString().split("T")[0]} onChange={dateChangeHandler} />
       <RecordList records={allRecords.filter(dateFilter)} />
       <div>
-        <p>user.id</p>
-        <p>user.firstName</p>
-        <p>user.lastName</p>
+        <p>id: {user.id}</p>
+        <p>first name: {user.firstName}</p>
+        <p>last name: {user.lastName}</p>
       </div>
     </>
   );
