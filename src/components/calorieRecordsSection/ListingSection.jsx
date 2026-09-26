@@ -13,6 +13,7 @@ import { getDateFromString } from "../../utils";
 function ListingSection(props){
   const { allRecords } = props;
   const [currentDate, setCurrentDate] = useState(new Date()); // UTC time
+  const [user, setUser] = useState({}); // changing state will re-render ->> will call getUser() -> changes user -> re-render....loop
 
   /**
    * Fires when the user picks a day in the date input.
@@ -37,6 +38,21 @@ function ListingSection(props){
     record.date.getMonth() === currentDate.getMonth() &&
     record.date.getFullYear() === currentDate.getFullYear();
 
+  const getUser = async () => {
+    console.log("Making a new HTTP request");
+
+    const response = await fetch("https://randomuser.me/api/");
+
+    const data = await response.json();
+    setUser({
+      id: data.id,
+      firstName: data["first_name"],
+      lastName: data["last_name"],
+    });
+  }
+
+  // getUser(); // this will cause an endless loop of sending HTTP-REQs and re-render. Website might block us
+
   return (
     <>
       <label className={styles["listing-picker-label"]} htmlFor="listingDate">Select date:</label>
@@ -44,6 +60,11 @@ function ListingSection(props){
           hence the toISOString().split("T")[0] conversion. */}
       <input type="date" name="" id="listingDate" className={styles["listing-picker-input"]} value={currentDate.toISOString().split("T")[0]} onChange={dateChangeHandler} />
       <RecordList records={allRecords.filter(dateFilter)} />
+      <div>
+        <p>user.id</p>
+        <p>user.firstName</p>
+        <p>user.lastName</p>
+      </div>
     </>
   );
 }
